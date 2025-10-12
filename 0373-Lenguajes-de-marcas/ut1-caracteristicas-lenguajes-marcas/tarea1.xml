@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Documento XML correspondiente a la Tarea 1 del módulo LEMA (FP DAW) -->
+<curso siglas="LEMA">
+    <modulo id="UT1">
+        <nombre_completo>Reconocimiento de las características de lenguajes de marcas</nombre_completo>
+        <horas_anuales>20</horas_anuales>
+        <contenido>Introducción y características fundamentales de XML, HTML y otros lenguajes de marcas.</contenido>
+        <profesor>Pablo Zárate Álvarez de Eulate y Rebeca Oroz Beorlegui</profesor>
+        <aula>Online</aula>
+    </modulo>
+
+    <modulo id="UT2">
+        <nombre_completo>Utilización de lenguajes de marcas en entornos web: HTML y CSS</nombre_completo>
+        <horas_anuales>40</horas_anuales>
+        <contenido>Desarrollo de páginas web utilizando HTML y hojas de estilo en cascada (CSS).</contenido>
+        <profesor>Pablo Zárate Álvarez de Eulate y Rebeca Oroz Beorlegui</profesor>
+        <aula>Online</aula>
+    </modulo>
+
+    <modulo id="UT3">
+        <nombre_completo>Sindicación de contenidos</nombre_completo>
+        <horas_anuales>15</horas_anuales>
+        <contenido>Creación y consumo de fuentes RSS y Atom.</contenido>
+        <profesor>Pablo Zárate Álvarez de Eulate y Rebeca Oroz Beorlegui</profesor>
+        <aula>Online</aula>
+    </modulo>
+
+    <modulo id="UT4">
+        <nombre_completo>Esquemas XML: DTD y XML Schema</nombre_completo>
+        <horas_anuales>25</horas_anuales>
+        <contenido>Validación de documentos XML mediante DTD y XML Schema.</contenido>
+        <profesor>Pablo Zárate Álvarez de Eulate y Rebeca Oroz Beorlegui</profesor>
+        <aula>Online</aula>
+    </modulo>
+
+    <modulo id="UT5">
+        <nombre_completo>Transformación de documentos XML con XSLT</nombre_completo>
+        <horas_anuales>30</horas_anuales>
+        <contenido>Conversión y adaptación de documentos XML utilizando hojas de transformación XSLT.</contenido>
+        <profesor>Pablo Zárate Álvarez de Eulate y Rebeca Oroz Beorlegui</profesor>
+        <aula>Online</aula>
+    </modulo>
+
+    <modulo id="UT6">
+        <nombre_completo>Almacenamiento de información XML</nombre_completo>
+        <horas_anuales>20</horas_anuales>
+        <contenido>Gestión de información estructurada usando XML almacenado en sistemas de bases de datos.</contenido>
+        <profesor>Pablo Zárate Álvarez de Eulate y Rebeca Oroz Beorlegui</profesor>
+        <aula>Online</aula>
+    </modulo>
+
+    <modulo id="UT7">
+        <nombre_completo>Sistemas de gestión de información</nombre_completo>
+        <horas_anuales>30</horas_anuales>
+        <contenido>Aplicación de XML en la gestión y transmisión de información en sistemas distribuidos.</contenido>
+        <profesor>Pablo Zárate Álvarez de Eulate y Rebeca Oroz Beorlegui</profesor>
+        <aula>Online</aula>
+    </modulo>
+</curso>
