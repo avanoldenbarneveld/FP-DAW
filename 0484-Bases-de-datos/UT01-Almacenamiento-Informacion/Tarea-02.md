@@ -1,100 +1,135 @@
-# UT1 BD01 - Preguntas y Respuestas
+# Instalación y configuración de Oracle Database 21c XE – Guía de referencia
 
-## Contexto del caso práctico
+Este documento resume claramente los pasos que hemos seguido para realizar la **Tarea 2: Instalación y configuración de Oracle** del módulo **Bases de Datos (BDDA)** en **FP DAW/DAM**. Además, sirve como referencia rápida para recordar el proceso en el futuro.
 
-Un colegio necesita gestionar información relacionada con **libros de gratuidad, servicio de comedor y autobús escolar**. Actualmente realizan todos los trámites manualmente mediante fichas en papel, lo que provoca desorden, duplicidad de datos y dificultad para acceder a la información. Quieren informatizar el sistema creando una **base de datos** que permita almacenar:
+---
 
-* Datos del alumnado y sus familias.
-* Uso del servicio de autobús (incluyendo parada).
-* Uso del comedor (fiambrera o menú).
-* Estado y seguimiento de libros (histórico de alumnos por libro y posibles desperfectos).
-* Gestión de tasas económicas asociadas.
+## Objetivo de la tarea
 
-El tutor añadirá información al inicio de curso y actualizará el estado de los libros al final. Secretaría gestionará datos bancarios y modificaciones de comedor o transporte. Otra persona desarrollará una **web sencilla** conectada a esta base de datos para facilitar la gestión.
+La tarea consiste en instalar el sistema gestor de bases de datos **Oracle Database 21c Express Edition (XE)**, acceder al sistema mediante **SQLPLUS** y crear un nuevo usuario. El trabajo se divide en tres apartados obligatorios:
 
-## 1. ¿Qué modelo de base de datos utilizarías para desarrollarla?
+1. Instalación de Oracle Database 21c XE
+2. Acceso al usuario administrador desde SQLPLUS
+3. Creación de un usuario común en Oracle
 
-El modelo más adecuado es el **modelo relacional**. Permite organizar la información en tablas relacionadas y garantiza coherencia, integridad y facilidad en las consultas mediante SQL. Es el estándar más utilizado en sistemas de gestión con datos estructurados como alumnos, familias, servicios de comedor y transporte.
+Cada paso debe incluir capturas de pantalla y una breve explicación para demostrar que se comprendió el proceso.
 
-## 2. ¿Cómo clasificarías esta base de datos según los tipos vistos en teoría?
+---
 
-Siguiendo las clasificaciones estudiadas:
+## Apartado 1: Instalación de Oracle Database 21c XE
 
-* **Según su variabilidad:** Base de datos dinámica (se actualiza durante el curso).
-* **Según su contenido:** Base de datos operacional o transaccional.
-* **Según su ubicación:** Centralizada (se usa en un único centro escolar).
-* **Según acceso de usuarios:** Multiusuario (secretaría, tutor, administración).
-* **Según el tiempo:** Actual con histórico (histórico de libros asociados a alumnos).
-* **Según su gestión:** Informatizada (gestionada mediante un SGBD).
+### ¿Qué hemos hecho?
 
-## 3. Elige un Sistema Gestor de Bases de Datos y explica el motivo. ¿Qué extensiones se usan para importar/exportar?
+1. Entramos en la web oficial de Oracle y descargamos la versión **Oracle Database 21c Express Edition para Windows x64**.
+2. Ejecutamos el instalador `OracleXE213_Win64.exe`.
+3. Durante la instalación, seleccionamos carpeta por defecto y establecimos la contraseña para el usuario administrador `SYS`.
+4. Terminamos la instalación correctamente.
 
-Se elegiría **MySQL** por ser gratuito, fácil de instalar, multiplataforma y con amplia documentación y soporte. Además, utiliza SQL y es ideal para proyectos educativos o pequeños sistemas de gestión.
+### ¿Para qué sirve?
 
-Extensiones habituales para importar/exportar:
+Este paso instala el sistema de base de datos Oracle en el ordenador. A partir de aquí, podemos crear usuarios, bases de datos y trabajar con SQL.
 
-* `.sql` → estructura y datos completos.
-* `.csv` → datos tabulares para hojas de cálculo.
-* `.xml` → intercambio estructurado de datos.
-* `.json` → intercambio de datos en aplicaciones web.
+---
 
-## 4. ¿Base de datos centralizada o distribuida? Explica tu decisión.
+## Apartado 2: Acceso al usuario administrador desde SQLPLUS
 
-Se utilizaría una **base de datos centralizada** ya que toda la información pertenece a un solo centro educativo. Facilita la administración y reduce costes técnicos. No existe necesidad de replicación ni distribución en varias ubicaciones.
+### ¿Qué hemos hecho?
 
-## 5. ¿Cuáles serían los posibles datos constantes en la BD de la escuela?
+1. Abrimos **Símbolo del sistema (CMD)** como administrador.
+2. Nos conectamos a Oracle con el usuario administrador usando:
 
-Los datos constantes, que no cambian con frecuencia, serían:
+   ```
+   sqlplus / as sysdba
+   ```
+3. Comprobamos qué usuario está conectado y en qué contenedor estamos trabajando usando:
 
-* Tarifas del comedor.
-* Tarifas del transporte escolar.
-* Tasas por desperfecto de libros.
-* Lista de paradas de autobús.
-* Cursos escolares (1º, 2º, 3º...).
-* Tipos de servicio de comedor (menú, fiambrera).
-* Estados de los libros (nuevo, usado, deteriorado).
+   ```
+   show user;
+   show con_name;
+   ```
 
-## 6. Legislación de protección de datos
+### ¿Qué comprobamos aquí?
 
-**a. ¿Qué ley protege los datos que recogemos?**
-El tratamiento de datos está protegido por el **RGPD (Reglamento General de Protección de Datos - UE 2016/679)** y la **LOPDGDD (Ley Orgánica 3/2018 de Protección de Datos Personales y Garantía de los Derechos Digitales)** en España.
+Vimos que:
 
-**b. ¿Los datos personales tienen algún derecho? ¿Cuáles son?**
-Sí, están protegidos por los derechos **ARCO-POL**:
+* El usuario activo era `SYS` (administrador de Oracle).
+* El contenedor activo era `CDB$ROOT` (contenedor raíz de la base de datos).
 
-* Acceso
-* Rectificación
-* Supresión (antes Cancelación)
-* Oposición
-* Portabilidad
-* Olvido
-* Limitación del tratamiento
+---
 
-**c. Niveles de seguridad de los datos**
-Existen tres niveles de seguridad:
+## Apartado 3: Creación de un usuario desde SQLPLUS
 
-* **Nivel básico:** datos identificativos (nombre, dirección).
-* **Nivel medio:** datos académicos o bancarios.
-* **Nivel alto:** salud, ideología, religión.
+### ¿Qué hemos hecho?
 
-En este caso:
+1. Creamos un nuevo usuario común en Oracle con nuestro nombre (obligatorio en la tarea):
 
-* Datos de alumnos/familias → nivel básico.
-* Datos bancarios → nivel medio.
-* Notas académicas → nivel medio.
-* Datos médicos (alergias) → nivel alto.
+   ```
+   create user c##alberto identified by alberto;
+   ```
+2. Le dimos permisos básicos para poder conectarse y trabajar:
 
-## 7. Big Data
+   ```
+   grant connect, resource to c##alberto;
+   ```
+3. Cerramos la sesión del administrador y probamos acceder con el nuevo usuario:
 
-El **Big Data** permite gestionar grandes volúmenes de datos provenientes de múltiples fuentes y que cambian con rapidez.
+   ```
+   exit;
+   sqlplus c##alberto/alberto
+   ```
+4. Confirmamos que la conexión funcionaba correctamente usando otra vez `show user` y `show con_name`.
 
-Se define por las **5V**:
+### ¿Qué aprendimos aquí?
 
-* **Volumen** → gran cantidad de datos.
-* **Velocidad** → datos generados constantemente.
-* **Variedad** → diferentes formatos (texto, audio, vídeo...).
-* **Veracidad** → fiabilidad de los datos.
-* **Valor** → utilidad que se obtiene tras analizarlos.
+* Oracle XE requiere que los **usuarios comunes** empiecen por **`c##`**.
+* El usuario `SYS` es el administrador y es el único que puede crear otros usuarios.
+* Para trabajar en Oracle debemos conceder permisos explícitamente a cada usuario.
 
-**¿Tiene sentido Big Data en este caso?**
-No. La cantidad de datos del colegio es pequeña y no requiere herramientas de Big Data. Es suficiente con una base de datos relacional tradicional.
+---
+
+## Archivos y comandos importantes
+
+### Comandos de SQLPLUS utilizados
+
+```
+sqlplus / as sysdba
+show user;
+show con_name;
+create user c##alberto identified by alberto;
+grant connect, resource to c##alberto;
+exit;
+sqlplus c##alberto/alberto
+```
+
+### Estructura obligatoria de capturas de la tarea
+
+1. Descarga de Oracle 21c XE
+2. Instalación completada
+3. Conexión como administrador SYS
+4. Mostrar usuario y contenedor activo
+5. Creación del usuario nuevo
+6. Conexión con el usuario creado
+
+---
+
+## Notas para futuras tareas
+
+* El usuario `SYS` solo debe usarse para administración, nunca para trabajar con bases de datos.
+* Cada usuario nuevo necesita permisos para poder crear tablas y conectarse.
+* Oracle XE trabaja con contenedores (`CDB$ROOT`, `PDB$SEED`, etc.).
+* SQLPLUS es la herramienta básica de línea de comandos para trabajar con Oracle.
+
+---
+
+## Próximos pasos
+
+Después de esta tarea, en siguientes prácticas comenzaremos a:
+
+* Crear tablas y estructuras de base de datos
+* Insertar y consultar datos con SQL
+* Trabajar con restricciones (PRIMARY KEY, FOREIGN KEY, etc.)
+* Gestionar privilegios y roles
+
+---
+
+Este documento sirve como referencia rápida para repasar todo el proceso cuando sea necesario. Se recomienda guardarlo y revisarlo antes de futuros ejercicios o exámenes relacionados con Oracle.

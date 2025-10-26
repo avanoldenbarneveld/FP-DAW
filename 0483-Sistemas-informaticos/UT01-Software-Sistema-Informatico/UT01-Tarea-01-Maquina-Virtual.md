@@ -1,252 +1,133 @@
-# Resumen: Software de un Sistema Informático
+# Guía práctica de referencia – Sistemas Informáticos (Windows, Linux y VirtualBox)
 
-Este documento resume los conceptos fundamentales del capítulo **Software de un Sistema Informático**, explicando los elementos de un sistema, los tipos de software, la gestión del sistema operativo y la virtualización. Está pensado como material de referencia para FP DAW.
-
----
-
-## 1. Qué es un Sistema Informático
-
-Un **sistema informático** es un conjunto de elementos que permiten el tratamiento automatizado de la información: almacenamiento, procesamiento y presentación de datos.
-
-### Componentes principales
-
-* **Hardware**: elementos físicos del sistema (CPU, memoria, disco, periféricos...).
-* **Software**: elementos lógicos —los programas y datos que hacen funcionar el hardware—.
-* **Usuario**: elemento humano que crea, usa y mantiene el sistema.
-
-### Tipos de software
-
-* **Software de sistema**: controla y coordina el hardware (ej. sistemas operativos, controladores, utilidades básicas).
-* **Software de aplicación**: permite realizar tareas concretas (procesadores de texto, navegadores, etc.).
+Este documento recoge de forma resumida y clara los pasos y conceptos realizados durante la práctica completa relacionada con gestión de procesos, memoria y virtualización. Su objetivo es servir como guía de referencia para futuras tareas o configuraciones similares.
 
 ---
 
-## 2. Instalación de Software
+## ✅ Actividad 1 – Tipos de software y licencias
 
-### Etapas del proceso de instalación
+Se identifican diferentes programas clasificándolos según:
 
-1. **Comprobación de requisitos**
+* **Tipo de licencia**: software libre o propietario.
+* **Propósito**: general (uso común) o específico (diseñado para tareas concretas).
+* **Descripción**: breve explicación del uso de cada programa.
 
-   * Cada aplicación tiene unos **requisitos mínimos** (hardware, sistema operativo, versión).
-   * También existen **requisitos recomendados** para un funcionamiento óptimo.
-
-2. **Ejecución del instalador**
-
-   * **Instalación básica**: automática, pensada para usuarios principiantes.
-   * **Instalación personalizada**: permite seleccionar componentes o rutas de instalación.
-
-3. **Configuración**
-
-   * Ajuste de parámetros visuales, directorios por defecto o idioma.
+Esta actividad ayuda a diferenciar distintos tipos de software y comprender cuándo es mejor usar alternativas libres.
 
 ---
 
-## 3. Tipos de Aplicaciones
+## ✅ Actividad 2 – Gestión de procesos
 
-### 3.1 Aplicaciones de propósito general
+### 🔹 En Windows (Administrador de tareas)
 
-Programas de uso común por la mayoría de usuarios:
+Se aprende a gestionar procesos desde el Administrador de tareas:
 
-* **Procesadores de texto** (Word, Writer)
-* **Hojas de cálculo** (Excel, Calc)
-* **Presentaciones** (PowerPoint, Impress)
-* **Correo y mensajería**, **navegadores**, **antivirus**, **compresores**
+* Mostrar columnas avanzadas como **PID** y **Línea de comandos**.
+* Cambiar la **prioridad de un proceso** desde la pestaña *Detalles*.
+* **Finalizar procesos** cuando una aplicación no responde.
 
-### 3.2 Aplicaciones de propósito específico
+Esto permite entender cómo el sistema operativo asigna recursos a los procesos.
 
-Programas diseñados para tareas concretas:
+### 🔹 En Linux (`ps -efl`)
 
-* **Contabilidad, facturación, gestión empresarial (ERP)**
-* **Diseño gráfico y multimedia (Photoshop, Gimp)**
-* **Entornos de desarrollo (Visual Studio, Eclipse)**
-* **Aplicaciones científicas o técnicas**
+Se utiliza el comando `ps -efl` para:
 
----
+* Ver **todos los procesos activos** con información detallada.
+* Entender campos como UID, PID, PPID, NI y CMD.
+* Identificar **jerarquía de procesos** desde un proceso hijo hasta el proceso inicial del sistema.
 
-## 4. Licencias de Software
-
-El software está protegido por derechos de autor. Las licencias determinan qué puede hacer el usuario con el programa.
-
-### 4.1 Software propietario
-
-El usuario **no puede modificar ni redistribuir** el código.
-
-* **CLUF** (Contrato de Licencia de Usuario Final)
-* **OEM**: software preinstalado, vinculado a un equipo concreto.
-* **Licencia por volumen**: uso corporativo.
-* **Freeware**: gratuito pero no modificable.
-* **Shareware**: versión de prueba con limitaciones.
-
-### 4.2 Software libre (Licencia GNU GPL)
-
-Otorga **cuatro libertades básicas**:
-
-1. Usar el programa para cualquier propósito.
-2. Estudiar su funcionamiento y modificarlo (requiere acceso al código fuente).
-3. Distribuir copias.
-4. Mejorar el programa y compartir las mejoras.
-
-El software libre no siempre es gratuito, pero siempre es **abierto y colaborativo**. Ejemplo: Linux.
-
-### 4.3 Copyright vs Copyleft
-
-* **Copyright (©)**: restringe el uso y copia.
-* **Copyleft (ↄ)**: permite copiar, modificar y redistribuir siempre que se mantenga la misma licencia libre.
+Este ejercicio sirve para interpretar cómo Linux organiza y controla los procesos.
 
 ---
 
-## 5. Sistemas Operativos
+## ✅ Actividad 3 – Gestión de la memoria
 
-### Definición
+### 🔹 En Windows
 
-El **sistema operativo (SO)** es el software base que gestiona los recursos del hardware y sirve de interfaz entre usuario y máquina.
+Desde la pestaña **Rendimiento** del Administrador de tareas:
 
-### Objetivos principales
+* Se consulta **cuánta memoria RAM hay instalada** y **cuánta se está usando**.
+* Se accede al **Monitor de recursos** para ver detalles de uso de CPU, memoria, disco y red.
+* Se estudia la **memoria virtual** utilizada por Windows mediante el archivo `pagefile.sys`.
 
-* Abstraer la complejidad del hardware.
-* Optimizar el uso de recursos.
-* Permitir la ejecución de programas.
-* Gestionar archivos, errores y comunicaciones.
+> La memoria virtual amplía la RAM usando espacio del disco duro para evitar errores cuando la memoria física se llena.
 
-### El Kernel o Núcleo
+### 🔹 En Linux (`free`)
 
-Es la parte central del sistema operativo. Se encarga de:
+Se utiliza el comando `free` para ver:
 
-* **Gestión de procesos** (programas en ejecución)
-* **Gestión de memoria**
-* **Gestión de archivos**
-* **Gestión de entrada/salida**
+* Memoria RAM total, usada y libre.
+* Memoria **swap** disponible.
+* Comparación entre RAM y swap según buenas prácticas del sistema.
 
-### Tipos de Sistemas Operativos
-
-* **Por estructura:** Monolíticos, Jerárquicos, por Capas, Microkernel, Máquina virtual, Cliente-servidor.
-* **Por número de usuarios:** Monousuario / Multiusuario.
-* **Por número de tareas:** Monotarea / Multitarea.
-* **Por procesadores:** Monoprocesador / Multiprocesador.
-* **Por red:** En red / Distribuidos.
+Esto refuerza la gestión de memoria en sistemas operativos.
 
 ---
 
-## 6. Gestión de Procesos
+## ✅ Actividad 4 – Instalación de Windows 10 en VirtualBox
 
-Un **proceso** es un programa en ejecución. Puede tener **subprocesos** (hilos).
+Se trabaja paso a paso en la instalación de una máquina virtual:
 
-### Estados de un proceso
+### ⚙️ Creación de máquina virtual
 
-* **Ejecución** → activo en CPU.
-* **Preparado** → listo pero esperando turno.
-* **Bloqueado** → espera de un recurso.
-* **Muerto** → ha terminado o fallado.
+* Se asigna un nombre obligatorio según el estándar de la actividad.
+* Se configura tipo y versión del sistema operativo.
 
-### Planificador de procesos
+### 💾 Configuración de hardware virtual
 
-Decide qué proceso usa el procesador en cada momento mediante **algoritmos de planificación**:
+* Se define tamaño de **RAM y procesador**.
+* Se crea un **disco duro virtual** dinámico.
 
-* **FIFO (First In, First Out)** → primero en llegar, primero en ejecutarse.
-* **SJF (Shortest Job First)** → el trabajo más corto primero.
-* **SRT (Shortest Remaining Time)** → prioridad al proceso con menos tiempo restante.
-* **Round Robin (RR)** → turnos de ejecución fijos.
-* **Prioridades** → procesos con prioridad alta se ejecutan antes.
+### 💿 Instalación del sistema operativo
 
----
+* Se utiliza una imagen ISO de Windows 10.
+* Se realiza instalación manual y configuración básica del sistema.
 
-## 7. Gestión de Memoria
+### ⭐ Guest Additions
 
-La **memoria principal (RAM)** almacena los procesos activos. El **gestor de memoria** asigna y libera espacio según los métodos:
+* Se instalan los **complementos del invitado** para mejorar integración: pantalla completa, ratón fluido, copiar/pegar entre equipos.
 
-### 7.1 Tipos de gestión
+### 🔗 Carpeta compartida
 
-* **Particiones fijas**: división en bloques de tamaño constante (ineficiente por fragmentación interna).
-* **Particiones variables**: se asigna solo lo necesario (puede causar fragmentación externa).
-* **Paginación**: divide la memoria en páginas de igual tamaño. Alta eficiencia, baja fragmentación.
+* Se configura una carpeta compartida entre máquina anfitrión y la virtual para intercambiar archivos.
 
-### 7.2 Memoria virtual / Swap
+### 🌐 Instalación de software
 
-* **Windows: Memoria virtual (pagefile.sys)** → usa disco duro como extensión de RAM.
-* **Linux: Memoria swap** → partición del disco dedicada al intercambio.
-* Ambas permiten ejecutar más procesos de los que caben en RAM.
+* Se instalan aplicaciones dentro de la máquina virtual.
+* Se aprende a ver **software instalado** y **hardware del sistema**.
+* Se practica la **desinstalación** de software.
 
 ---
 
-## 8. Gestión de Entrada/Salida (E/S)
+## ✅ Actividad 5 – Mantenimiento en VirtualBox
 
-Permite la comunicación entre el sistema y los periféricos.
+### 📦 Archivo .vdi
 
-### Controladores (Drivers)
+* Se localiza el archivo del disco duro virtual (.vdi).
+* Se explica que es posible hacer copia manual del .vdi como respaldo.
 
-Software que traduce instrucciones del sistema operativo para el dispositivo físico.
+### 🧬 Clonar una máquina virtual
 
-### Estructuras de datos
+* Se crea una **copia completa de la máquina** en VirtualBox para usar como reserva.
 
-* **Spool**: cola de impresión o espera (ej. impresoras).
-* **Buffer**: almacenamiento temporal para sincronizar velocidades entre dispositivos.
+### 🕒 Instantáneas (Snapshots)
 
-### Modos de transferencia
-
-1. **E/S programada** → la CPU realiza todo el proceso.
-2. **E/S por interrupciones** → el periférico avisa cuando está listo.
-3. **DMA (Acceso Directo a Memoria)** → el controlador gestiona la transferencia sin usar la CPU.
+* Se crea una instantánea para **guardar el estado actual** de la máquina.
+* Sirve para restaurar el sistema fácilmente si ocurre algún error en el futuro.
 
 ---
 
-## 9. Gestión de Archivos
+## ✅ Conclusión
 
-Los archivos se organizan en **directorios** o **carpetas**. El **sistema de archivos** gestiona cómo se almacenan y recuperan los datos.
+Este documento resume cómo gestionar procesos, memoria y cómo instalar y mantener máquinas virtuales. Las herramientas utilizadas fueron:
 
-### Objetivos del sistema de archivos
+* Administrador de tareas (Windows)
+* Monitor de recursos (Windows)
+* Comandos `ps` y `free` (Linux)
+* Oracle VirtualBox
 
-* Acceso rápido y eficiente.
-* Fiabilidad y seguridad.
-* Facilidad de mantenimiento.
-* Control de permisos (lectura, escritura, ejecución).
-* Control de concurrencia (acceso simultáneo de varios usuarios).
-
-### Atributos comunes de los archivos
-
-* Nombre, extensión, tamaño, propietario, permisos, fechas de creación/modificación.
-
-Los sistemas de archivos se estructuran jerárquicamente en forma de **árbol de directorios**.
+Todo este proceso mejora la comprensión práctica del funcionamiento del sistema operativo y la administración de recursos.
 
 ---
 
-## 10. Virtualización y Máquinas Virtuales
-
-La **virtualización** permite ejecutar varios sistemas operativos en un mismo equipo físico mediante software especializado.
-
-### Conceptos clave
-
-* **Máquina anfitrión (host)**: el equipo físico.
-* **Máquina invitada (guest)**: el sistema operativo virtual.
-
-### Ventajas
-
-* Ahorro de recursos y costes.
-* Entornos de prueba seguros.
-* Ejecución de sistemas antiguos o distintos en un mismo equipo.
-
-### Software de virtualización
-
-* **VirtualBox (Oracle)** → libre y gratuito.
-* **VMware** → propietario.
-* **Hyper-V (Microsoft)** → integrado en Windows.
-* **Parallels** → para macOS.
-
-### Configuración básica de una máquina virtual
-
-1. Crear una nueva VM con nombre, SO, RAM y disco.
-2. Asignar tipo de disco (tamaño dinámico o fijo).
-3. Montar una ISO de instalación (ej. Windows 10).
-4. Instalar las **Guest Additions** para optimizar gráficos, ratón y carpetas compartidas.
-
-### Modos de red en VirtualBox
-
-* **NAT**: conexión a Internet a través del host.
-* **Puente (Bridged)**: la VM actúa como un equipo más en la red.
-* **Red interna**: comunicación entre máquinas virtuales.
-* **Host-only**: solo conexión entre host e invitado.
-
----
-
-## 11. Conclusión
-
-El software constituye el componente lógico esencial de los sistemas informáticos. Comprender sus tipos, licencias y gestión a través de los sistemas operativos es fundamental para el desarrollo de aplicaciones y la administración técnica. La virtualización amplía estas posibilidades, permitiendo experimentar y trabajar en entornos seguros y controlados.
+> 📚 **Consejo final:** guarda esta guía porque te servirá en futuras prácticas de administración de sistemas y virtualización. También es buen contenido para tu portfolio técnico o documentación en GitHub.
